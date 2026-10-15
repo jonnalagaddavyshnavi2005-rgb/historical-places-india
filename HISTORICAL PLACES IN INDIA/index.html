@@ -1,0 +1,284 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>Historical Places in India</title>
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <!-- Modern Navigation Bar -->
+<nav class="main-navbar">
+  <a href="#" class="brand">
+    <span class="brand-icon">✦</span>
+    <span>Heritage<span class="brand-highlight">India</span></span>
+  </a>
+
+  <button class="menu-toggle" id="menuToggle"
+          aria-label="Toggle navigation"
+          aria-expanded="false">
+    ☰
+  </button>
+
+  <div class="nav-links" id="navLinks">
+    <a href="#home">Home</a>
+    <a href="#places">Historical Places</a>
+    <a href="#live-places">Explore Online</a>
+    <a href="#about">About</a>
+    <a href="#contact" class="nav-contact">Contact</a>
+  </div>
+</nav>
+  <header class="site-header" id="home">
+    <h1>Historical Places in India</h1>
+    <p class="subtitle">
+      List of Famous Monuments &amp; Heritage Sites in India.
+    </p>
+  </header>
+
+  <main class="container">
+
+    <!-- Welcome Section -->
+    <section class="welcome-banner" aria-label="Welcome">
+      <div>
+        <p class="eyebrow">DISCOVER INDIA'S HERITAGE</p>
+        <h2>Every monument has a story.</h2>
+        <p>
+          Explore remarkable places, discover their history,
+          and ask your Heritage Assistant.
+        </p>
+      </div>
+
+      <div class="welcome-mark" aria-hidden="true">✦</div>
+    </section>
+
+    <!-- Existing Search and State Filter -->
+    <div class="controls">
+      <input
+        id="search"
+        type="search"
+        placeholder="Search by name or description..."
+        aria-label="Search historical places"
+      />
+
+      <select id="stateFilter" aria-label="Filter by state">
+        <option value="">All states / union territories</option>
+      </select>
+    </div>
+
+    <!-- Existing Historical Places -->
+    <section
+      id="places"
+      class="places-grid"
+      aria-live="polite"
+    ></section>
+
+    <!-- NEW: Live Online Historical Places -->
+    <section class="live-section" id="livePlacesSection">
+      <div class="live-heading">
+        <p class="eyebrow">EXPLORE MORE</p>
+        <h2>Discover India's Heritage Online</h2>
+        <p>
+          Search Wikipedia for historical places, monuments,
+          forts, palaces, and heritage sites.
+        </p>
+      </div>
+
+      <form id="liveSearchForm" class="live-controls">
+        <input
+          id="liveSearchInput"
+          type="search"
+          placeholder="Try Taj Mahal, Hampi, Red Fort..."
+          aria-label="Search online historical places"
+          required
+        />
+
+        <button type="submit" class="button">
+          Search Online
+        </button>
+      </form>
+
+      <div class="live-filter">
+        <label for="liveStateFilter">Search by state or territory</label>
+
+        <select id="liveStateFilter">
+          <option value="">All India</option>
+          <option value="Andhra Pradesh">Andhra Pradesh</option>
+          <option value="Arunachal Pradesh">Arunachal Pradesh</option>
+          <option value="Assam">Assam</option>
+          <option value="Bihar">Bihar</option>
+          <option value="Delhi">Delhi</option>
+          <option value="Goa">Goa</option>
+          <option value="Gujarat">Gujarat</option>
+          <option value="Haryana">Haryana</option>
+          <option value="Himachal Pradesh">Himachal Pradesh</option>
+          <option value="Karnataka">Karnataka</option>
+          <option value="Kerala">Kerala</option>
+          <option value="Madhya Pradesh">Madhya Pradesh</option>
+          <option value="Maharashtra">Maharashtra</option>
+          <option value="Odisha">Odisha</option>
+          <option value="Punjab">Punjab</option>
+          <option value="Rajasthan">Rajasthan</option>
+          <option value="Tamil Nadu">Tamil Nadu</option>
+          <option value="Telangana">Telangana</option>
+          <option value="Uttar Pradesh">Uttar Pradesh</option>
+          <option value="Uttarakhand">Uttarakhand</option>
+          <option value="West Bengal">West Bengal</option>
+          <option value="Jammu and Kashmir">Jammu and Kashmir</option>
+          <option value="Ladakh">Ladakh</option>
+        </select>
+      </div>
+
+      <p id="liveStatus" class="live-status" role="status"
+         aria-live="polite">
+        Enter a monument name to explore online information.
+      </p>
+
+      <div
+        id="livePlacesGrid"
+        class="live-places-grid"
+        aria-live="polite"
+      ></div>
+
+      <p class="api-note">
+        Online information is retrieved from Wikipedia.
+        Details and images may not be available for every place.
+      </p>
+    </section>
+
+  </main>
+
+  <!-- Existing AI Heritage Assistant -->
+  <section
+    class="assistant-panel is-hidden"
+    id="assistantPanel"
+    aria-labelledby="assistantTitle"
+  >
+    <div class="assistant-heading">
+      <div class="assistant-icon" aria-hidden="true">✦</div>
+
+      <div>
+        <h2 id="assistantTitle">AI Heritage Assistant</h2>
+        <p>Ask about a monument, state, or history.</p>
+      </div>
+
+      <button
+        type="button"
+        class="assistant-close"
+        id="assistantClose"
+        aria-label="Close assistant"
+      >×</button>
+    </div>
+
+    <div class="chat-messages" id="chatMessages" aria-live="polite">
+      <div class="chat-bubble assistant-bubble">
+        Namaste! I can help you explore the historical places
+        listed on this page. Try "Tell me about Hampi" or
+        "Show places in Delhi".
+      </div>
+    </div>
+
+    <div class="quick-prompts">
+      <button
+        type="button"
+        class="prompt-chip"
+        data-prompt="Tell me about Taj Mahal"
+      >Taj Mahal</button>
+
+      <button
+        type="button"
+        class="prompt-chip"
+        data-prompt="Show places in Delhi"
+      >Places in Delhi</button>
+
+      <button
+        type="button"
+        class="prompt-chip"
+        data-prompt="Suggest a place to explore"
+      >Suggest a place</button>
+    </div>
+
+    <form class="assistant-form" id="assistantForm">
+      <label class="sr-only" for="assistantInput">
+        Ask the Heritage Assistant
+      </label>
+
+      <input
+        id="assistantInput"
+        type="text"
+        placeholder="Ask about Indian heritage..."
+        autocomplete="off"
+      />
+
+      <button type="submit" class="button">Ask</button>
+    </form>
+
+    <p class="assistant-note">
+      This demo uses your project's built-in place information.
+      The online search section separately retrieves Wikipedia data.
+      The assistant is not connected to an external AI service.
+    </p>
+  </section>
+
+  <button
+    type="button"
+    class="assistant-launcher"
+    id="assistantLauncher"
+    aria-controls="assistantPanel"
+    aria-expanded="false"
+  >
+    <span aria-hidden="true">✦</span> Heritage Assistant
+  </button>
+
+ 
+
+  
+
+<!-- Modern Footer -->
+<footer class="main-footer" id="contact">
+  <div class="footer-container">
+
+    <div class="footer-about" id="about">
+      <a href="#" class="footer-brand">
+        ✦ HeritageIndia
+      </a>
+      <p>
+        Discover India's incredible heritage, explore ancient
+        monuments, and learn the stories behind our history.
+      </p>
+    </div>
+
+    <div class="footer-links">
+      <h3>Quick Links</h3>
+      <a href="#home">Home</a>
+      <a href="#places">Historical Places</a>
+      <a href="#live-places">Explore Online</a>
+    </div>
+
+    <div class="footer-links">
+      <h3>Explore</h3>
+      <a href="#live-places">Discover Monuments</a>
+      <a href="#live-places">Search by State</a>
+      <a href="#contact">Contact</a>
+    </div>
+
+  </div>
+
+  <div class="footer-bottom">
+    <p>
+      © <span id="currentYear"></span> HeritageIndia.
+      Made with ❤️ for India's heritage.
+    </p>
+    <p>Explore the past. Celebrate our heritage.</p>
+  </div>
+</footer>
+<!-- Keep your existing JavaScript -->
+  <script src="script.js"></script>
+
+  <!-- NEW: Live API functionality -->
+  <script src="livePlaces.js"></script>
+</body>
+</html>
